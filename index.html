@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Kai &amp; XJ | Evergarden Wedding</title>
-  <meta name="description" content="You are invited to the wedding of Kai and XJ. RSVP, details, and Pittsburgh travel guide.">
-  <meta name="theme-color" content="#0b1740">
+  <title>Kai &amp; Xia Jiang | Evergarden Wedding</title>
+  <meta name="description" content="Kai and Xia Jiang are getting married July 17, 2027. RSVP, details, and Pittsburgh travel guide.">
+  <meta name="theme-color" content="#c8102e">
 
   <script>
     /* Runs before first paint: picks designed vs plain text view so nothing flashes. */
@@ -35,20 +35,37 @@
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
     <linearGradient id="gold-stroke" gradientUnits="userSpaceOnUse" x1="2" y1="2" x2="22" y2="22">
-      <stop offset="0" stop-color="#b39558"/><stop offset=".5" stop-color="#ecdfba"/><stop offset="1" stop-color="#b39558"/>
+      <stop offset="0" stop-color="#ad7f22"/><stop offset=".5" stop-color="#fff1c2"/><stop offset="1" stop-color="#ad7f22"/>
     </linearGradient>
     <linearGradient id="gold-knockout" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#a88a52"/><stop offset=".42" stop-color="#e6d5a6"/><stop offset=".64" stop-color="#c4a76d"/><stop offset="1" stop-color="#a88a52"/>
+      <stop offset="0" stop-color="#ad7f22"/><stop offset=".42" stop-color="#ffe9a8"/><stop offset=".64" stop-color="#d4af37"/><stop offset="1" stop-color="#ad7f22"/>
     </linearGradient>
   </defs></svg>
 
   <header class="topbar">
     <button type="button" class="pill" id="plain-toggle">Plain text version</button>
     <button type="button" class="pill" id="skip-intro">Skip intro</button>
-    <button type="button" class="pill pill--solid" id="top-rsvp" data-rsvp>RSVP</button>
+    <nav class="menu">
+      <button type="button" class="menu__toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu-panel" aria-label="Menu">
+        <span class="menu__icon" aria-hidden="true"></span>
+      </button>
+      <div class="menu__panel" id="menu-panel">
+        <button type="button" class="menu__link" id="menu-plain-link">Plain text version</button>
+        <button type="button" class="menu__link" data-rsvp>RSVP</button>
+        <a class="menu__link" href="#stay">Stays</a>
+        <a class="menu__link" href="#do">Things to Do</a>
+        <a class="menu__link" href="#attire">Attire</a>
+        <a class="menu__link" href="#gifts">Send Gift</a>
+      </div>
+    </nav>
   </header>
 
   <canvas id="stars" aria-hidden="true"></canvas>
+
+  <!-- A minimalist Pittsburgh skyline, including PPG Place's glass spires, fixed to the bottom of the page -->
+  <svg class="skyline" viewBox="0 0 400 90.7" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+    <polygon fill="currentColor" points="0,90.7 10.5,90.7 10.8,80.9 24.0,80.9 24.3,90.4 29.9,90.4 30.2,29.9 31.6,29.6 31.9,21.0 36.8,13.1 37.1,9.9 40.4,9.9 40.8,13.1 45.7,21.0 46.0,29.6 47.3,29.9 47.7,81.5 59.5,81.5 59.8,42.4 62.4,42.4 62.8,39.8 84.8,39.8 85.1,42.4 87.8,42.4 88.1,70.7 93.0,71.0 93.3,75.9 96.0,76.3 96.3,80.9 100.6,80.9 100.9,41.7 103.5,41.7 103.9,39.8 116.7,39.8 117.0,41.7 119.3,41.7 119.6,80.5 122.9,80.9 123.6,62.8 127.9,62.8 128.2,24.3 133.4,24.3 134.1,19.7 141.7,19.7 142.3,22.7 148.2,22.7 148.9,24.3 155.1,24.3 155.5,62.8 157.8,62.8 158.1,68.4 159.7,68.4 160.1,5.6 181.4,5.6 181.8,68.4 186.4,68.4 186.7,64.1 191.0,64.1 191.3,47.0 194.2,46.7 194.6,38.8 202.1,22.7 202.5,9.2 207.1,9.2 207.4,23.0 215.0,38.8 215.3,47.0 218.2,47.0 218.6,64.1 221.2,64.1 221.5,77.2 226.8,77.2 227.1,10.5 228.4,10.2 228.8,6.9 231.1,6.9 231.4,3.3 234.3,3.3 237.3,0.0 238.9,0.0 241.9,3.3 244.9,3.3 245.2,6.6 247.5,6.9 247.8,10.2 248.8,10.2 249.5,77.2 252.4,77.2 252.8,72.3 256.4,72.3 256.7,20.0 263.3,20.0 263.6,26.6 277.4,26.6 277.7,20.0 284.3,20.0 284.6,72.0 290.9,72.3 291.2,84.1 303.0,84.1 303.7,34.5 315.2,34.5 315.5,43.4 326.7,43.4 332.0,51.6 332.6,52.9 332.9,84.1 337.9,84.1 338.2,79.5 343.5,79.5 343.8,62.1 345.4,62.1 345.8,58.8 348.7,58.5 351.4,50.3 354.3,50.3 356.9,58.8 359.6,58.8 360.2,62.1 361.9,62.1 362.2,79.5 365.8,79.5 366.1,87.4 375.0,87.4 375.3,79.2 400.0,79.5 400,90.7 0,90.7"/>
+  </svg>
 
   <!-- Opening scene -->
   <div class="intro" id="intro">
@@ -62,56 +79,58 @@
 
     <div class="shots" id="shots" aria-hidden="true">
       <figure class="shot" style="--rot:-5deg">
-        <div class="shot__inner"><img src="images/photo-1.jpg" alt=""><span class="vf"><i></i><i></i><i></i><i></i></span></div>
+        <div class="shot__inner"><img src="images/photo-1.jpg" alt=""></div>
       </figure>
       <figure class="shot" style="--rot:4deg">
-        <div class="shot__inner"><img src="images/photo-2.jpg" alt=""><span class="vf"><i></i><i></i><i></i><i></i></span></div>
+        <div class="shot__inner"><img src="images/photo-2.jpg" alt=""></div>
       </figure>
       <figure class="shot" style="--rot:-2.5deg">
-        <div class="shot__inner"><img src="images/photo-3.jpg" alt=""><span class="vf"><i></i><i></i><i></i><i></i></span></div>
+        <div class="shot__inner"><img src="images/photo-3.jpg" alt=""></div>
       </figure>
     </div>
-    <div class="flash" id="flash" aria-hidden="true"></div>
   </div>
 
   <main id="main" tabindex="-1">
 
     <section class="hero" id="landing" aria-label="Invitation">
       <div class="invite">
-        <p class="invite__lead gilded">You are invited to the wedding of</p>
-        <h1 class="invite__names gilded">Kai &amp; XJ</h1>
-        <!-- EDIT: put the same date here as in the Celebrate card further down -->
-        <p class="invite__date gilded">Date</p>
+        <h1 class="invite__names gilded">Kai &amp; Xia Jiang</h1>
+        <p class="invite__lead gilded">Are getting married.</p>
+        <!-- EDIT: keep this the same as the Date in the Celebrate card further down -->
+        <p class="invite__date gilded">July 17, 2027</p>
+        <div class="invite__actions">
+          <button type="button" class="btn btn--gold" data-rsvp>RSVP</button>
+          <a class="btn btn--outline" href="#celebrate">Details</a>
+        </div>
       </div>
-      <a class="scroll-cue" href="#celebrate">Scroll<span aria-hidden="true"></span></a>
     </section>
 
     <section class="celebrate" id="celebrate" aria-labelledby="hero-title">
-      <!-- EDIT: replace the words Date, Time and Location inside the <dd> tags with the real details (and the Date under Kai & XJ in the hero above) -->
+      <!-- EDIT: a real Time still needs to be added inside its <dd> tag -->
       <div class="when reveal">
         <h2 id="hero-title" class="hero__title gilded">Celebrate our love with us</h2>
-        <p class="hero__sign gilded">x Kai &amp; XJ</p>
         <figure class="frame"><img src="images/celebrate.jpg" width="1600" height="1067" alt="The couple laughing together as one takes a bite of an ice cream cone in a crowded night market."></figure>
         <dl class="when__list">
-          <div><dt class="sr-only">Date</dt><dd class="gilded">Date</dd></div>
+          <div><dt class="sr-only">Date</dt><dd class="gilded">July 17th, 2027</dd></div>
           <div><dt class="sr-only">Time</dt><dd class="gilded">Time</dd></div>
-          <div><dt class="sr-only">Location</dt><dd class="gilded">Location</dd></div>
+          <div><dt class="sr-only">Location</dt><dd><a class="gilded" href="https://www.google.com/maps/search/?api=1&amp;query=Elmer+Clark+Pavilion%2C+West+End+Overlook+Park%2C+Pittsburgh%2C+PA" target="_blank" rel="noopener">Elmer Clark Pavilion, Pittsburgh, Pennsylvania<span class="sr-only"> (opens in a new tab)</span></a></dd></div>
         </dl>
       </div>
+    </section>
+
+    <section class="polaroids reveal" id="moments" aria-label="A few more moments">
+      <figure class="polaroid" style="--rot:-4deg"><img src="images/photo-1.jpg" alt="The couple kissing on a lively, neon-lit street at night."></figure>
+      <figure class="polaroid" style="--rot:3deg"><img src="images/celebrate.jpg" alt="The couple laughing together as one takes a bite of an ice cream cone in a crowded night market."></figure>
+      <figure class="polaroid" style="--rot:-2deg"><img src="images/photo-3.jpg" alt="The couple walking hand in hand down a lantern-lit street at night, looking back toward the camera."></figure>
     </section>
 
     <section class="block" id="details" aria-labelledby="details-title">
       <div class="details reveal">
         <h2 id="details-title" class="block__title gilded">The Details</h2>
         <div class="details__intro">
-          <span class="detail__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="url(#gold-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></span>
           <p>We appreciate you being a part of our journey, and we are so excited to see you and your family at our celebration.</p>
         </div>
         <ul class="details__list">
-          <li class="detail">
-            <span class="detail__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="url(#gold-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2"/> <path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14"/> <path d="M10 20h4"/> <circle cx="16" cy="20" r="2"/> <circle cx="8" cy="20" r="2"/></svg></span>
-            <div class="detail__body"><p>For those of you who are traveling, we have included a list below of potential Pittsburgh accommodations and activities!</p></div>
-          </li>
           <li class="detail">
             <span class="detail__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="url(#gold-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6v12l8-6z"/><path d="M22 6v12l-8-6z"/><rect x="10" y="9" width="4" height="6" rx="1.2"/></svg></span>
             <div class="detail__body"><p>This will be an elegant, black tie event, and we have gathered attire inspiration for you below.</p></div>
@@ -121,11 +140,11 @@
             <div class="detail__body"><p>We are not creating a wedding registry. Instead, if you would like to give us a gift, we ask that you help us invest in our future.</p></div>
           </li>
           <li class="detail">
-            <span class="detail__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="url(#gold-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/> <path d="M15 12h.01"/> <path d="M19.38 6.813A9 9 0 0 1 20.8 10.2a2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/> <path d="M9 12h.01"/></svg></span>
+            <span class="detail__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="url(#gold-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2"/><path d="M2 19c0-4.5 1.5-8 3.5-8s3.5 3.5 3.5 8"/><circle cx="12" cy="8.2" r="1.6"/><path d="M9 19c0-3.2 1.2-5.4 3-5.4s3 2.2 3 5.4"/><circle cx="18.5" cy="6" r="2"/><path d="M15 19c0-4.5 1.5-8 3.5-8s3.5 3.5 3.5 8"/></svg></span>
             <div class="detail__body"><p>This is a child friendly wedding, so please be sure to include your children in your RSVP!</p></div>
           </li>
           <li class="detail">
-            <span class="detail__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="url(#gold-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="4" r="1"/> <path d="m18 19 1-7-6 1"/> <path d="m5 8 3-3 5.5 3-2.36 3.5"/> <path d="M4.24 14.5a5 5 0 0 0 6.88 6"/> <path d="M13.76 17.5a5 5 0 0 0-6.88-6"/></svg></span>
+            <span class="detail__icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="url(#gold-stroke)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2"/><path d="M12 8v7"/><path d="M8 11h8"/><path d="M12 15l-3.5 6"/><path d="M12 15l3.5 6"/></svg></span>
             <div class="detail__body"><p>Accessibility accommodations for all will be available at our celebration. Please let us know in your RSVP if there is anything we can provide to ensure you have the best time!</p></div>
           </li>
         </ul>
@@ -136,7 +155,7 @@
     <section class="block" id="gifts" aria-labelledby="gifts-title">
       <div class="block__lead reveal">
         <h2 id="gifts-title" class="block__title gilded">Gifts</h2>
-        <p>If you would like to send a gift, you can do so with any of these.</p>
+        <p>We are not creating a wedding registry. Instead, if you would like to give us a gift, we ask that you help us invest in our future.</p>
       </div>
       <!-- EDIT: replace each href with your own profile link, for example https://venmo.com/u/yourname -->
       <ul class="pay">
@@ -157,157 +176,171 @@
     </section>
 
     <section class="block" id="stay" aria-labelledby="stay-title">
-      <div class="block__lead block__lead--toggle reveal">
+      <div class="block__lead reveal">
         <h2 id="stay-title" class="block__title gilded">Places to Stay</h2>
-        <p>Hotels and bed and breakfasts around Pittsburgh. Rooms can fill up, so we suggest booking early.</p>
-        <button type="button" class="toggle" aria-expanded="false" aria-controls="stay-panel" aria-label="Show places to stay" data-label="places to stay"><span class="toggle__icon" aria-hidden="true"></span></button>
+        <p>A few hotels and Airbnb-friendly neighborhoods around Pittsburgh. Rooms can fill up, so we suggest booking early.</p>
       </div>
-      <div class="collapsible" id="stay-panel">
-        <div class="collapsible__inner">
-        <ul class="cards" id="stay-list">
-          <li class="card reveal">
-            <div class="card__head"><h3>Omni William Penn Hotel</h3><span class="card__tags"><span class="tag">Hotel</span></span></div>
-            <p class="card__area">Downtown</p>
-            <p>A grand landmark hotel open since 1916, with three restaurants on site.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Omni+William+Penn+Hotel+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Omni William Penn Hotel (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Kimpton Hotel Monaco Pittsburgh</h3><span class="card__tags"><span class="tag">Hotel</span></span></div>
-            <p class="card__area">Downtown</p>
-            <p>A stylish boutique hotel with a warm, design-forward feel.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Kimpton+Hotel+Monaco+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Kimpton Hotel Monaco Pittsburgh (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Fairmont Pittsburgh</h3><span class="card__tags"><span class="tag">Hotel</span></span></div>
-            <p class="card__area">Downtown</p>
-            <p>A polished, modern hotel within walking distance of the Andy Warhol Museum.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Fairmont+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Fairmont Pittsburgh (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Mansions on Fifth</h3><span class="card__tags"><span class="tag">Boutique hotel</span></span></div>
-            <p class="card__area">Shadyside</p>
-            <p>Historic mansions turned boutique hotel with a cozy, B&amp;B style feel.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Mansions+on+Fifth+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Mansions on Fifth (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Inn on Negley</h3><span class="card__tags"><span class="tag">Bed and breakfast</span></span></div>
-            <p class="card__area">Shadyside</p>
-            <p>A restored period home with eight rooms and homemade breakfast, steps from Walnut Street.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Inn+on+Negley+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Inn on Negley (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Sunnyledge Boutique Hotel</h3><span class="card__tags"><span class="tag">Boutique hotel</span></span></div>
-            <p class="card__area">Shadyside</p>
-            <p>A boutique hotel in one of Pittsburgh&#39;s leafy, walkable neighborhoods.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Sunnyledge+Boutique+Hotel+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Sunnyledge Boutique Hotel (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Inn on the Mexican War Streets</h3><span class="card__tags"><span class="tag">Bed and breakfast</span></span></div>
-            <p class="card__area">North Side</p>
-            <p>A charming B&amp;B in the former Boggs Mansion.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Inn+on+the+Mexican+War+Streets+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Inn on the Mexican War Streets (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>The Parador Inn</h3><span class="card__tags"><span class="tag">Bed and breakfast</span></span></div>
-            <p class="card__area">North Side</p>
-            <p>A cozy, budget friendly inn on the North Side.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=The+Parador+Inn+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for The Parador Inn (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>The Priory Hotel</h3><span class="card__tags"><span class="tag">Hotel</span></span></div>
-            <p class="card__area">North Side</p>
-            <p>A historic, intimate hotel on the North Side.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=The+Priory+Hotel+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for The Priory Hotel (opens in a new tab)</span></a>
-          </li>
-        </ul>
-        </div>
-      </div>
+      <ul class="cards" id="stay-list">
+        <li class="card reveal">
+          <div class="card__head"><h3>DoubleTree</h3><span class="card__tags"></span></div>
+          <p class="card__area">Greentree</p>
+          <p>A reliable chain hotel a short drive west of downtown.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=DoubleTree%2C+500+Mansfield+Ave%2C+Pittsburgh%2C+PA+15205" target="_blank" rel="noopener">View on map<span class="sr-only"> for DoubleTree (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Holiday Inn</h3><span class="card__tags"></span></div>
+          <p class="card__area">Greentree</p>
+          <p>A comfortable, familiar option just off the Parkway West.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Holiday+Inn%2C+875+Greentree+Rd%2C+Pittsburgh%2C+PA+15220" target="_blank" rel="noopener">View on map<span class="sr-only"> for Holiday Inn (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Hampton Inn</h3><span class="card__tags"></span></div>
+          <p class="card__area">Greentree</p>
+          <p>A straightforward, well reviewed stay near the airport corridor.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Hampton+Inn%2C+555+Trumbull+Dr%2C+Pittsburgh%2C+PA+15205" target="_blank" rel="noopener">View on map<span class="sr-only"> for Hampton Inn (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Comfort Inn</h3><span class="card__tags"></span></div>
+          <p class="card__area">Banksville</p>
+          <p>An easy, budget friendly option on the west side of the city.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Comfort+Inn%2C+1100+Banksville+Rd%2C+Pittsburgh%2C+PA+15216" target="_blank" rel="noopener">View on map<span class="sr-only"> for Comfort Inn (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Carnegie</h3><span class="card__tags"><span class="tag">Airbnb area</span></span></div>
+          <p class="card__area">Carnegie</p>
+          <p>A quiet, residential neighborhood with good short term rental options nearby.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Carnegie+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Carnegie (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Mount Washington</h3><span class="card__tags"><span class="tag">Airbnb area</span></span></div>
+          <p class="card__area">Mount Washington</p>
+          <p>Hillside streets with some of the best skyline views in the city.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Mount+Washington+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Mount Washington (opens in a new tab)</span></a>
+        </li>
+      </ul>
     </section>
 
     <section class="block" id="do" aria-labelledby="do-title">
-      <div class="block__lead block__lead--toggle reveal">
+      <div class="block__lead reveal">
         <h2 id="do-title" class="block__title gilded">Things to Do</h2>
-        <p>A few of our favorite ways to spend a day in the city.</p>
-        <button type="button" class="toggle" aria-expanded="false" aria-controls="do-panel" aria-label="Show things to do" data-label="things to do"><span class="toggle__icon" aria-hidden="true"></span></button>
+        <p>A few of our favorite ways to spend a day in the city, and some good places to eat.</p>
       </div>
-      <div class="collapsible" id="do-panel">
-        <div class="collapsible__inner">
-        <ul class="cards" id="do-list">
-          <li class="card reveal">
-            <div class="card__head"><h3>Phipps Conservatory and Botanical Gardens</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
-            <p class="card__area">Oakland</p>
-            <p>Glasshouses and gardens in bloom all year long.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Phipps+Conservatory+and+Botanical+Gardens+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Phipps Conservatory and Botanical Gardens (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Duquesne Incline and Mount Washington</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
-            <p class="card__area">Mount Washington</p>
-            <p>Ride a cable car from 1877 to the classic view of the skyline and the three rivers.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Duquesne+Incline+and+Mount+Washington+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Duquesne Incline and Mount Washington (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>The Andy Warhol Museum</h3><span class="card__tags"></span></div>
-            <p class="card__area">North Shore</p>
-            <p>Pop art and the life of Pittsburgh&#39;s most famous artist.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=The+Andy+Warhol+Museum+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for The Andy Warhol Museum (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>The Strip District</h3><span class="card__tags"></span></div>
-            <p class="card__area">Strip District</p>
-            <p>Markets, bakeries, and plenty of good food to wander through.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=The+Strip+District+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for The Strip District (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Carnegie Museums of Art and Natural History</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
-            <p class="card__area">Oakland</p>
-            <p>Two world class museums side by side.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Carnegie+Museums+of+Art+and+Natural+History+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Carnegie Museums of Art and Natural History (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Pittsburgh Zoo and PPG Aquarium</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
-            <p class="card__area">Highland Park</p>
-            <p>Animals of every kind, from elephants to sharks.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Pittsburgh+Zoo+and+PPG+Aquarium+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Pittsburgh Zoo and PPG Aquarium (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>National Aviary</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
-            <p class="card__area">North Side</p>
-            <p>The country&#39;s only independent indoor aviary, home to hundreds of birds.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=National+Aviary+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for National Aviary (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Children&#39;s Museum of Pittsburgh</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
-            <p class="card__area">North Side</p>
-            <p>Hands on play and exhibits made for little ones.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Children%27s+Museum+of+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Children&#39;s Museum of Pittsburgh (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>The Frick Pittsburgh</h3><span class="card__tags"></span></div>
-            <p class="card__area">Point Breeze</p>
-            <p>A historic estate with an art museum and gardens. Admission is free.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=The+Frick+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for The Frick Pittsburgh (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Mattress Factory</h3><span class="card__tags"></span></div>
-            <p class="card__area">North Side</p>
-            <p>Immersive, ever changing art installations.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Mattress+Factory+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Mattress Factory (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Randyland</h3><span class="card__tags"></span></div>
-            <p class="card__area">North Side</p>
-            <p>A riot of color and folk art, free to enjoy from the sidewalk.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Randyland+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Randyland (opens in a new tab)</span></a>
-          </li>
-          <li class="card reveal">
-            <div class="card__head"><h3>Point State Park</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
-            <p class="card__area">Downtown</p>
-            <p>Where the three rivers meet, with its famous fountain.</p>
-            <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Point+State+Park+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Point State Park (opens in a new tab)</span></a>
-          </li>
-        </ul>
-        </div>
-      </div>
+      <ul class="cards" id="do-list">
+        <li class="card reveal">
+          <div class="card__head"><h3>Pittsburgh Zoo &amp; PPG Aquarium</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
+          <p class="card__area">Highland Park</p>
+          <p>Animals of every kind, from elephants to sharks.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Pittsburgh+Zoo+%26+PPG+Aquarium+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Pittsburgh Zoo &amp; PPG Aquarium (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Children&#39;s Museum of Pittsburgh</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
+          <p class="card__area">North Side</p>
+          <p>Hands on play and exhibits made for little ones.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Children%27s+Museum+of+Pittsburgh+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Children&#39;s Museum of Pittsburgh (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Carnegie Science Center</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
+          <p class="card__area">North Side</p>
+          <p>Hands on exhibits, a real submarine, and an OMNIMAX theater on the river.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Carnegie+Science+Center+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Carnegie Science Center (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Mattress Factory</h3><span class="card__tags"></span></div>
+          <p class="card__area">North Side</p>
+          <p>Immersive, ever changing art installations.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Mattress+Factory+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Mattress Factory (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Grandview Overlook</h3><span class="card__tags"></span></div>
+          <p class="card__area">Mount Washington</p>
+          <p>A classic lookout over the skyline and the three rivers, especially pretty at night.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Grandview+Overlook+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Grandview Overlook (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>The Andy Warhol Museum</h3><span class="card__tags"></span></div>
+          <p class="card__area">North Side</p>
+          <p>Pop art and the life of Pittsburgh&#39;s most famous artist.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=The+Andy+Warhol+Museum+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for The Andy Warhol Museum (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Carnegie Museums of Art and Natural History</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
+          <p class="card__area">Oakland</p>
+          <p>Two world class museums side by side.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Carnegie+Museums+of+Art+and+Natural+History+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Carnegie Museums of Art and Natural History (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Sports Museum at the Heinz History Center</h3><span class="card__tags"></span></div>
+          <p class="card__area">Strip District</p>
+          <p>Pittsburgh&#39;s sports history, from the Steelers to the Pirates.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Sports+Museum+at+the+Heinz+History+Center+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Sports Museum at the Heinz History Center (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Duquesne Incline</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
+          <p class="card__area">Mount Washington</p>
+          <p>Ride a cable car from 1877 to the classic view of the skyline and the three rivers.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Duquesne+Incline+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Duquesne Incline (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Frick Park</h3><span class="card__tags"></span></div>
+          <p class="card__area">Point Breeze</p>
+          <p>Pittsburgh&#39;s largest park, with miles of wooded trails right in the city.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Frick+Park+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Frick Park (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Phipps Conservatory and Botanical Gardens</h3><span class="card__tags"><span class="tag tag--kids">Kid friendly</span></span></div>
+          <p class="card__area">Oakland</p>
+          <p>Glasshouses and gardens in bloom all year long.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Phipps+Conservatory+and+Botanical+Gardens+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Phipps Conservatory and Botanical Gardens (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Carnegie Library of Pittsburgh, Beechview</h3><span class="card__tags"></span></div>
+          <p class="card__area">Beechview</p>
+          <p>A quiet, historic neighborhood branch worth a peek if you&#39;re in the area.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Carnegie+Library+of+Pittsburgh%2C+Beechview+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Carnegie Library of Pittsburgh, Beechview (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Carnegie Library of Pittsburgh, Main</h3><span class="card__tags"></span></div>
+          <p class="card__area">Oakland</p>
+          <p>The grand main library, right next to the museums.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Carnegie+Library+of+Pittsburgh%2C+Main+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Carnegie Library of Pittsburgh, Main (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Squirrel Hill Farmers Market</h3><span class="card__tags"></span></div>
+          <p class="card__area">Squirrel Hill</p>
+          <p>A lively Sunday morning market with local produce and goods, May through December.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Squirrel+Hill+Farmers+Market+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Squirrel Hill Farmers Market (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Pamela&#39;s Diner</h3><span class="card__tags"><span class="tag">Food</span></span></div>
+          <p class="card__area">Strip District</p>
+          <p>A Pittsburgh breakfast institution, famous for its hotcake sundaes.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Pamela%27s+Diner+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Pamela&#39;s Diner (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Eggs &amp; Moore</h3><span class="card__tags"><span class="tag">Food</span></span></div>
+          <p class="card__area">Mount Washington</p>
+          <p>A stylish neighborhood spot for breakfast and brunch.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Eggs+%26+Moore+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Eggs &amp; Moore (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Eat&#39;n Park</h3><span class="card__tags"><span class="tag">Food</span></span></div>
+          <p class="card__area">Around the city</p>
+          <p>Pittsburgh&#39;s own diner chain, with locations all over the area.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Eat%27n+Park+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Eat&#39;n Park (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Primanti Bros.</h3><span class="card__tags"><span class="tag">Food</span></span></div>
+          <p class="card__area">Strip District</p>
+          <p>The original home of Pittsburgh&#39;s famous sandwich, piled high with fries and slaw.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Primanti+Bros.+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Primanti Bros. (opens in a new tab)</span></a>
+        </li>
+        <li class="card reveal">
+          <div class="card__head"><h3>Totopo</h3><span class="card__tags"><span class="tag">Food</span></span></div>
+          <p class="card__area">Mount Lebanon</p>
+          <p>A local favorite for Mexican food, a bit further out in Mount Lebanon.</p>
+          <a class="card__link" href="https://www.google.com/maps/search/?api=1&amp;query=Totopo+Pittsburgh+PA" target="_blank" rel="noopener">View on map<span class="sr-only"> for Totopo (opens in a new tab)</span></a>
+        </li>
+      </ul>
     </section>
 
     <section class="block block--closing" aria-labelledby="closing-title">
@@ -315,7 +348,6 @@
         <h2 id="closing-title" class="block__title gilded">We hope to see you there</h2>
         <button type="button" class="btn btn--gold" data-rsvp>RSVP</button>
       </div>
-      <p class="closing__sign gilded reveal">x Kai &amp; XJ</p>
     </section>
   </main>
 
@@ -334,7 +366,7 @@
 
         <!-- EDIT: replace YOUR_FORM_ID with your Formspree form ID (formspree.io/f/xxxxxxxx) -->
         <form id="rsvp-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <input type="hidden" name="_subject" value="New RSVP: Kai and XJ Evergarden wedding">
+          <input type="hidden" name="_subject" value="New RSVP: Kai and Xia Jiang Evergarden wedding">
           <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="field">
@@ -397,7 +429,7 @@
   <script src="js/stars.js"></script>
   <script src="js/main.js"></script>
 
-  <!-- UserWay accessibility widget, pinned to the lower right (data-position 3) and tinted antique gold (data-color). It sits alongside the Plain text version buttons, it does not replace them. -->
-  <script src="https://cdn.userway.org/widget.js" data-account="lv8DEr85yT" data-position="3" data-color="#a88a52"></script>
+  <!-- UserWay accessibility widget, pinned to the lower right (data-position 3) and tinted metallic gold (data-color). It sits alongside the Plain text version buttons, it does not replace them. -->
+  <script src="https://cdn.userway.org/widget.js" data-account="lv8DEr85yT" data-position="3" data-color="#d4af37"></script>
 </body>
 </html>

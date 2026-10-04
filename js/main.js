@@ -1,6 +1,6 @@
 /* =========================================================
-   Kai & XJ | Evergarden Wedding
-   Intro sequence, plain text view, RSVP form, scroll reveals
+   Kai & Xia Jiang | Evergarden Wedding
+   Intro sequence, plain text view, RSVP form, scroll reveals, nav menu
    ========================================================= */
 (function () {
   'use strict';
@@ -12,15 +12,17 @@
   var stars = window.EvergardenStars;
   var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
-  var intro = $('#intro'), flash = $('#flash');
+  var intro = $('#intro');
   var gate = $('#gate'), enterBtn = $('#enter-btn'), gatePlain = $('#gate-plain');
+  var shotsEl = $('#shots');
   var figs = $$('.shot', intro);
   var plainBtn = $('#plain-toggle'), skipBtn = $('#skip-intro'), live = $('#live'), main = $('#main');
 
-  // Timing (ms)
-  var FOCUS_TIME = 450;     // viewfinder locks on
-  var SHOT_GAP = 350;       // pause after each click
-  var PHOTOS_HOLD = 600;    // all three photos on screen before they dissolve
+  // Timing (ms) for the photos' fade + drop entrance
+  var STAGGER = 120;      // gap between each photo starting its reveal
+  var REVEAL_DUR = 650;   // how long one photo takes to fade in and ease into place
+  var PHOTOS_HOLD = 900;  // how long all three sit still, fully revealed
+  var REVEAL_TOTAL = STAGGER * Math.max(0, figs.length - 1) + REVEAL_DUR + PHOTOS_HOLD;
 
   var SKIP = { skipped: true };
   var skipped = false, finished = false, entered = false, preload = null, pend = [];
@@ -90,47 +92,28 @@
     return Promise.race([all, cap]);
   }
 
-  function shutter(fig) {
-    var r = fig.getBoundingClientRect();
-    flash.style.setProperty('--fx', (r.left + r.width / 2) + 'px');
-    flash.style.setProperty('--fy', (r.top + r.height / 2) + 'px');
-    flash.classList.remove('go');
-    void flash.offsetWidth;   // restart the animation
-    flash.classList.add('go');
-  }
-
-  function clickShot(fig) {
-    fig.classList.add('is-focusing');
-    return wait(FOCUS_TIME).then(function () {
-      shutter(fig);
-      fig.classList.add('is-clicked');
-      return wait(SHOT_GAP);
-    });
-  }
-
-  // Order of events: gate (click to enter), then the photos, then the page lands on the invitation.
+  // Order of events: gate (click to enter) -> the photos fade in and ease into place, hold,
+  // then fade away together -> the page lands on the invitation. The photos' fade-out and the
+  // landing's fade-in are started together (not one after the other), so there is never a gap
+  // of empty background between the two - just one continuous crossfade.
   function play() {
-    var chain = Promise.resolve(preload || ready()).then(function () {
+    Promise.resolve(preload || ready()).then(function () {
       if (skipped) throw SKIP;
+      shotsEl.classList.add('is-in');
+      return wait(REVEAL_TOTAL);
+    }).then(function () {
+      shotsEl.classList.add('is-out');
+      finish(false, true);
+    }, function (err) {
+      if (err !== SKIP && window.console) console.error(err);
+      finish(false);
     });
-
-    figs.forEach(function (fig) { chain = chain.then(function () { return clickShot(fig); }); });
-
-    chain.then(function () { return wait(PHOTOS_HOLD); })
-      .then(function () {
-        figs.forEach(function (f) { f.classList.add('is-fading'); });
-        return wait(180);
-      })
-      .then(function () { return stars ? stars.dissolve(figs) : wait(1500); })
-      .then(function () { finish(false, true); }, function (err) {
-        if (err !== SKIP && window.console) console.error(err);
-        finish(false);
-      });
   }
 
   function enter() {
     if (entered || finished) return;
     entered = true;
+    if (stars) stars.seed();   // the night sky is already twinkling as the photos appear
     gate.classList.add('is-out');
     root.classList.remove('gate-on');
     play();
@@ -138,14 +121,13 @@
     setTimeout(function () { if (!finished && !isPlain()) endIntro(false); }, 60000);
   }
 
-  // natural = the dissolve ran to the end, so its stars are already drifting home
+  // natural = the photos' own fade-out is already under way as this runs
   function finish(focusMain, natural) {
     if (finished) return;
     if (isPlain()) { finished = true; return; }
     finished = true;
     gate.classList.add('is-out');
     root.classList.remove('gate-on');
-    figs.forEach(function (f) { f.style.visibility = 'hidden'; });
     if (stars && !natural) stars.finishNow();
     intro.classList.add('is-done');
     root.classList.remove('intro-on');
@@ -201,11 +183,38 @@
     var last = nodes[nodes.length - 1];
     if (!last) return;
     var text = last.nodeValue, trimmed = text.replace(/\s+$/, ''), idx = trimmed.lastIndexOf(' ');
-    if (idx > 0) { last.nodeValue = text.slice(0, idx) + '\u00A0' + text.slice(idx + 1); return; }
+    if (idx > 0) { last.nodeValue = text.slice(0, idx) + ' ' + text.slice(idx + 1); return; }
     var prev = nodes[nodes.length - 2];   // e.g. label text followed by an "(optional)" span
-    if (prev && /\s$/.test(prev.nodeValue)) prev.nodeValue = prev.nodeValue.replace(/\s$/, '\u00A0');
+    if (prev && /\s$/.test(prev.nodeValue)) prev.nodeValue = prev.nodeValue.replace(/\s$/, ' ');
   }
   $$('p, h1, h2, h3, dd, label, legend, a.btn, button.btn').forEach(tidy);
+
+  /* ---------- top-right nav: a single hamburger menu ---------- */
+  var menuBtn = $('#menu-toggle'), menuPanel = $('#menu-panel'), menuPlainLink = $('#menu-plain-link');
+
+  function closeMenu() {
+    if (!menuBtn || menuBtn.getAttribute('aria-expanded') !== 'true') return;
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuPanel.classList.remove('is-open');
+  }
+
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function () {
+      var open = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      menuPanel.classList.toggle('is-open', !open);
+    });
+    // bound once, unconditionally: checking the open state inside avoids the classic bug where
+    // the click that opens the panel immediately bubbles up and closes it again
+    document.addEventListener('click', function (e) {
+      if (menuBtn.getAttribute('aria-expanded') === 'true' && !menuPanel.contains(e.target) && !menuBtn.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') { closeMenu(); menuBtn.focus(); }
+    });
+    $$('.menu__link', menuPanel).forEach(function (el) { el.addEventListener('click', closeMenu); });
+  }
+  if (menuPlainLink) menuPlainLink.addEventListener('click', function () { setView(true); });
 
   /* ---------- RSVP dialog + Formspree ---------- */
   var dialog = $('#rsvp-dialog'), form = $('#rsvp-form');
@@ -214,6 +223,7 @@
   var guestFields = $('#guest-fields'), adults = $('#f-adults');
 
   function openRsvp() {
+    closeMenu();
     if (!finished) endIntro(false);
     resetForm();
     if (typeof dialog.showModal === 'function') dialog.showModal();
@@ -295,22 +305,6 @@
       showError(detail
         ? detail + ' Please check the form and try again.'
         : 'We could not send your RSVP. Please check your connection and try again.');
-    });
-  });
-
-  /* ---------- "+" buttons that open Places to Stay and Things to Do ---------- */
-  $$('.toggle').forEach(function (btn) {
-    var panel = document.getElementById(btn.getAttribute('aria-controls'));
-    btn.addEventListener('click', function () {
-      var open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-      btn.setAttribute('aria-label', (open ? 'Show ' : 'Hide ') + btn.getAttribute('data-label'));
-      panel.classList.toggle('is-open', !open);
-      if (!open) {
-        // if the button sits low on the screen, bring it up so the opened list is in view
-        var r = btn.getBoundingClientRect();
-        if (r.bottom > window.innerHeight * 0.6) window.scrollBy({ top: r.top - window.innerHeight * 0.3, behavior: reduceMotion ? 'auto' : 'smooth' });
-      }
     });
   });
 

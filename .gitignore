@@ -1,13 +1,8 @@
-# Only the website itself goes in this repo. Everything else in the folder
-# (original high-resolution photos, the .psd, screenshots, editor files) stays local.
+# Only the site itself is published; source photos and the invite PNG stay local
 /*
+!/.gitignore
 !/index.html
 !/css/
 !/js/
 !/images/
-!/.gitignore
-
-# not used by the site any more
-/images/cosmos.jpg
-
 .DS_Store
